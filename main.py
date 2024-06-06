@@ -16,19 +16,19 @@ model = tf.keras.models.Sequential()
 model.add(tf.keras.layers.Flatten(input_shape=(28, 28)))
 model.add(tf.keras.layers.Dense(128, activation='relu'))
 model.add(tf.keras.layers.Dense(128, activation='relu'))
-model.add(tf.keras.layers.Dense(10, activation='softmax'))
+model.add(tf.keras.layers.Dense(10, activation='softmax')) # always use softmax for multi-class, returns index of maximum probability
 
 model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
 model.fit(x_train, y_train, epochs=3)
 
 # saving the trained model
-model.save('handwritten.model')
+model.save('handwritten.keras')
 
 #========================================================================
 
 # opening the trained model
-model = tf.keras.models.load_model('handwritten.model')
+model = tf.keras.models.load_model('handwritten.keras')
 
 # # checking the accuracy of the model
 loss, accuracy = model.evaluate(x_test, y_test)
